@@ -68,19 +68,7 @@ public class AbsChartView extends View {
 //        canvas.drawLine(0,0,500,500,mPaint);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(2);
-//        Path p = new Path();
-//        p.moveTo(0,500);
-//        p.lineTo(10,400);
-//        p.lineTo(20,370);
-//        p.lineTo(100,200);
-//        p.lineTo(200,300);
-//        p.lineTo(300,500);
-//        p.lineTo(400,100);
-//        p.lineTo(500,500);
-//        p.close();
-//        canvas.drawPath(p,mPaint);
-
-
+//
         LineChartDrawer chartDrawer = new LineChartDrawer();
         List<Map.Entry<String, Float>> list = new ArrayList<>();
         for(int i = 0; i < 20 ; i ++){
