@@ -15,8 +15,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <live.lqs.com.scrollchartlibrary.AbsChartView
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+
+        android:layout_height="300dp">
+
+        <live.lqs.com.scrollchartlibrary.AbsChartView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </HorizontalScrollView>
+
+
 
 </android.support.constraint.ConstraintLayout>

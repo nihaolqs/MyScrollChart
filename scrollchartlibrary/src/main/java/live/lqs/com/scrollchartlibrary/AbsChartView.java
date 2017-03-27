@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -13,7 +12,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,8 +70,8 @@ public class AbsChartView extends View {
         LineChartDrawer chartDrawer = new LineChartDrawer();
         List<Map.Entry<String, Float>> list = new ArrayList<>();
         for(int i = 0; i < 20 ; i ++){
-            list.add(new LineChartDrawer.DataEntry<String,Float>("X_" + 2*i,80f));
-            list.add(new LineChartDrawer.DataEntry<String,Float>("X_" + (2*i +1),30f));
+            list.add(new DataEntry<String,Float>("X_" + 2*i,80f));
+            list.add(new DataEntry<String,Float>("X_" + (2*i +1),30f));
         }
         chartDrawer.setLineChartData(list);
 
@@ -83,7 +81,6 @@ public class AbsChartView extends View {
         mPaint.setXfermode(null);
         //还原画布
         canvas.restoreToCount(saveCount);
-
 
     }
 
@@ -102,5 +99,11 @@ public class AbsChartView extends View {
         int quarterWidth = width /2;
         srcRect = new RectF(centerX-quarterWidth, centerY-quarterWidth, centerX+quarterWidth, centerY+quarterWidth);
         dstRect = new RectF(centerX-quarterWidth, centerY-quarterWidth, centerX+quarterWidth, centerY+quarterWidth);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(widthMeasureSpec*2,heightMeasureSpec);
     }
 }

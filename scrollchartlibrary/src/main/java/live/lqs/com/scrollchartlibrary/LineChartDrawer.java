@@ -43,28 +43,5 @@ public class LineChartDrawer implements IChartDrawer {
         this.mDataList = list;
     }
 
-    public static final class DataEntry<K, V> implements Map.Entry<K, V> { //数据类
-        private final K key;
-        private final V value;
 
-        public DataEntry(K k, V v) {
-            this.key = k;
-            this.value = v;
-        }
-
-        @Override
-        public K getKey() {
-            return key;
-        }
-
-        @Override
-        public V getValue() {
-            return value;
-        }
-
-        @Override
-        public V setValue(V value) {
-            return value;
-        }
-    }
 }

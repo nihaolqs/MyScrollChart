@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 
 /**
  * Created by dell on 2017/3/23.
@@ -32,6 +33,7 @@ public class ScrollChartLayout extends ViewGroup implements IScroll {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
     }
 
     public boolean canScroll() {
