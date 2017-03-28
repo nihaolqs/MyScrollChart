@@ -6,6 +6,6 @@ import android.view.ViewGroup;
  * Created by dell on 2017/3/23.
  */
 
-public interface IScroll {
+public interface IScrollController {
         void doScroll(ViewGroup vg, int x, int y);
 }

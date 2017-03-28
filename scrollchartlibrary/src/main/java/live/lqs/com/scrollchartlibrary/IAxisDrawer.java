@@ -7,7 +7,10 @@ import android.graphics.Canvas;
  */
 
 public interface IAxisDrawer {
+
     void DrawXAxis(Canvas canvas, float scrollX);
 
     void DrawYAxis(Canvas canvas, float scrollY);
+
+    void setmStyleData(ChartLayoutBasicStyleData mStyleData);
 }

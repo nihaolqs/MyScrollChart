@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ScrollChartLayout">
+        <attr name="MaxY" format="integer" />
+        <attr name="MaxX" format="integer" />
+        <attr name="UnitWeidth" format="reference|dimension" />
+        <attr name="UnitHeight" format="reference|dimension" />
+        <attr name="AxisTextSize" format="reference|dimension" />
+        <attr name="AxisColor" format="reference|color" />
+    </declare-styleable>
+
+</resources>
