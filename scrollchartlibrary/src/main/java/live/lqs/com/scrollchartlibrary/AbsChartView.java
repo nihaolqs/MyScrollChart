@@ -51,7 +51,7 @@ public class AbsChartView extends View {
         }
 
         //背景色设为红色，方便比较效果
-        canvas.drawColor(Color.RED);
+//        canvas.drawColor(Color.RED);
         mPaint.setColor(Color.GREEN);
         canvas.drawRect(0,0,width,height/2,mPaint);
         //将绘制操作保存到新的图层
@@ -104,6 +104,6 @@ public class AbsChartView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(widthMeasureSpec*2,heightMeasureSpec);
+        setMeasuredDimension(200,100);
     }
 }

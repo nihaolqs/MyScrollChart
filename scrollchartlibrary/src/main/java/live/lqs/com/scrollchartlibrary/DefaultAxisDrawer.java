@@ -2,8 +2,6 @@ package live.lqs.com.scrollchartlibrary;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-
-import java.util.Collections;
 import java.util.List;
 
 /**

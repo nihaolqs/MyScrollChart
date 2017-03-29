@@ -93,7 +93,7 @@ public class ChartLayoutBasicStyleData {
         private Paint mYAxisPaint;  //Y轴画笔
 
         public Builder setmMaxYValue(float mMaxYValue) {
-            if (mMaxYValue <= 0) {
+            if (mMaxYValue < 0) {
                 throw new IllegalArgumentException("最大值不能为负数");
             }
             this.mMaxYValue = mMaxYValue;
@@ -101,7 +101,7 @@ public class ChartLayoutBasicStyleData {
         }
 
         public Builder setmMaxXValue(int mMaxXValue) {
-            if (mMaxXValue <= 0) {
+            if (mMaxXValue < 0) {
                 throw new IllegalArgumentException("最大值不能为负数");
             }
             this.mMaxXValue = mMaxXValue;
@@ -109,7 +109,7 @@ public class ChartLayoutBasicStyleData {
         }
 
         public Builder setmUnitWeidth(float mUnitWeidth) {
-            if (mUnitWeidth <= 0) {
+            if (mUnitWeidth < 0) {
                 throw new IllegalArgumentException("单位宽度不能为负数");
             }
             this.mUnitWeidth = mUnitWeidth;
@@ -117,7 +117,7 @@ public class ChartLayoutBasicStyleData {
         }
 
         public Builder setmUnitHeight(float mUnitHeight) {
-            if (mUnitHeight <= 0) {
+            if (mUnitHeight < 0) {
                 throw new IllegalArgumentException("单位高度不能为负数");
             }
             this.mUnitHeight = mUnitHeight;
@@ -125,7 +125,7 @@ public class ChartLayoutBasicStyleData {
         }
 
         public Builder setmPaddingLeft(int mPaddingLeft) {
-            if (mPaddingLeft <= 0) {
+            if (mPaddingLeft < 0) {
                 throw new IllegalArgumentException("PaddingLeft不能为负数");
             }
             this.mPaddingLeft = mPaddingLeft;
@@ -133,7 +133,7 @@ public class ChartLayoutBasicStyleData {
         }
 
         public Builder setmPaddingButtom(int mPaddingButtom) {
-            if (mPaddingButtom <= 0) {
+            if (mPaddingButtom < 0) {
                 throw new IllegalArgumentException("mPaddingButtom不能为负数");
             }
             this.mPaddingButtom = mPaddingButtom;
@@ -141,7 +141,7 @@ public class ChartLayoutBasicStyleData {
         }
 
         public Builder setmPaddingRight(int mPaddingRight) {
-            if (mPaddingRight <= 0) {
+            if (mPaddingRight < 0) {
                 throw new IllegalArgumentException("mPaddingRight不能为负数");
             }
             this.mPaddingRight = mPaddingRight;
@@ -149,7 +149,7 @@ public class ChartLayoutBasicStyleData {
         }
 
         public Builder setmPaddingTop(int mPaddingTop) {
-            if (mPaddingTop <= 0) {
+            if (mPaddingTop < 0) {
                 throw new IllegalArgumentException("mPaddingTop不能为负数");
             }
             this.mPaddingTop = mPaddingTop;

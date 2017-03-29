@@ -11,7 +11,7 @@ public class BasicScrollController implements IScrollController {
     public void doScroll(ViewGroup vg, int x, int y) {
         int childCount = vg.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            vg.getChildAt(i).scrollTo(x,y);
+            vg.getChildAt(i).scrollBy(x,y);
         }
     }
 }
