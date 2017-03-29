@@ -37,21 +37,22 @@
         android:padding="20dp"
 
         >
-        <!--<live.lqs.com.scrollchartlibrary.AbsChartView-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-            <!--/>-->
+        <live.lqs.com.scrollchartlibrary.AbsChartView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+            />
         <TextView
             android:layout_width="20dp"
             android:layout_height="10dp"
             android:text="test"
-            android:background="#ff0000"
             />
     </live.lqs.com.scrollchartlibrary.ScrollChartLayout>
 
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></RadioGroup>
+        android:layout_height="wrap_content">
+
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

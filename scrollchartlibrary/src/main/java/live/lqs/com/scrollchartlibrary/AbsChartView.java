@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
+import android.support.annotation.Px;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -105,5 +106,11 @@ public class AbsChartView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(200,100);
+    }
+
+    @Override
+    public void scrollBy(@Px int x, @Px int y) {
+        super.scrollBy(x, y);
+        invalidate();
     }
 }
