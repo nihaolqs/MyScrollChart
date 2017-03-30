@@ -20,7 +20,7 @@ import java.util.Map;
  * Created by dell on 2017/3/23.
  */
 
-public class AbsChartView extends View {
+public class AbsChartView extends View implements IScrollChart {
 
     private int width;
     private int height;
@@ -31,6 +31,8 @@ public class AbsChartView extends View {
 
     private RectF srcRect;
     private RectF dstRect;
+    private float mScrollChartX;
+    private float mScrollChartY;
 
     public AbsChartView(Context context) {
         super(context);
@@ -46,20 +48,26 @@ public class AbsChartView extends View {
         if (width == 0 || height == 0) {
             width = getWidth();
             height = getHeight();
-            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG| Paint.FILTER_BITMAP_FLAG);
+            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
             mXfermode = new PorterDuffXfermode(mPorterDuffMode);
 
         }
 
+//        int scrollX = getScrollX();
+//        int scrollY = getScrollY();
+        canvas.translate(mScrollChartX,mScrollChartY);
+
         //背景色设为红色，方便比较效果
-//        canvas.drawColor(Color.RED);
+        canvas.drawColor(Color.RED);
         mPaint.setColor(Color.GREEN);
-        canvas.drawRect(0,0,width,height/2,mPaint);
+        mPaint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(0, 0, width, height / 2, mPaint);
+        canvas.drawRect(0,0,800,800,mPaint);
         //将绘制操作保存到新的图层
         mPaint.setColor(Color.WHITE);
         int saveCount = canvas.saveLayer(srcRect, mPaint, Canvas.ALL_SAVE_FLAG);
         //绘制目标图
-        canvas.drawRect(dstRect,mPaint);
+        canvas.drawRect(dstRect, mPaint);
         //设置混合模式
         mPaint.setXfermode(mXfermode);
         //绘制源图
@@ -70,13 +78,13 @@ public class AbsChartView extends View {
 //
         LineChartDrawer chartDrawer = new LineChartDrawer();
         List<Map.Entry<String, Float>> list = new ArrayList<>();
-        for(int i = 0; i < 20 ; i ++){
-            list.add(new DataEntry<String,Float>("X_" + 2*i,80f));
-            list.add(new DataEntry<String,Float>("X_" + (2*i +1),30f));
+        for (int i = 0; i < 20; i++) {
+            list.add(new DataEntry<String, Float>("X_" + 2 * i, 80f));
+            list.add(new DataEntry<String, Float>("X_" + (2 * i + 1), 30f));
         }
         chartDrawer.setLineChartData(list);
 
-        chartDrawer.onDrawChart(canvas,width,height,mPaint);
+        chartDrawer.onDrawChart(canvas, width, height, mPaint);
 
         //清除混合模式
         mPaint.setXfermode(null);
@@ -88,29 +96,46 @@ public class AbsChartView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        this.width = w;
-        this.height = h;
+//        this.width = w;
+//        this.height = h;
 
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG| Paint.FILTER_BITMAP_FLAG);
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
         mXfermode = new PorterDuffXfermode(mPorterDuffMode);
 
-        int width = w <= h ? w : h;
-        int centerX = w/2;
-        int centerY = h/2;
-        int quarterWidth = width /2;
-        srcRect = new RectF(centerX-quarterWidth, centerY-quarterWidth, centerX+quarterWidth, centerY+quarterWidth);
-        dstRect = new RectF(centerX-quarterWidth, centerY-quarterWidth, centerX+quarterWidth, centerY+quarterWidth);
+//        int width = w <= h ? w : h;
+        int centerX = width / 2;
+        int centerY = height / 2;
+        int quarterWidth = width / 2;
+        srcRect = new RectF(centerX - quarterWidth, centerY - quarterWidth, centerX + quarterWidth, centerY + quarterWidth);
+        dstRect = new RectF(centerX - quarterWidth, centerY - quarterWidth, centerX + quarterWidth, centerY + quarterWidth);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(200,100);
+//        setMeasuredDimension(200, 100);
     }
 
     @Override
-    public void scrollBy(@Px int x, @Px int y) {
-        super.scrollBy(x, y);
+    public void scrollChartX(float x) {
+        this.mScrollChartX = x;
         invalidate();
     }
+
+    @Override
+    public void scrollChartY(float y) {
+        this.mScrollChartY = y;
+        invalidate();
+    }
+
+//    @Override
+//    public void setY(@Px float y) {
+//        super.setY(y);
+//    }
+
+    //    @Override
+//    public void scrollBy(@Px int x, @Px int y) {
+//        super.scrollBy(x, y);
+//        invalidate();
+//    }
 }

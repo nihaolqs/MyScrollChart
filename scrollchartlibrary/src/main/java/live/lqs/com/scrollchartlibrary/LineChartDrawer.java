@@ -25,7 +25,8 @@ public class LineChartDrawer implements IChartDrawer {
     public void onDrawChart(Canvas canvas, float width, float height, Paint paint) {
 
         if (mDataList != null || mDataList.size() != 0) {
-            mUnitWeidth = width / mDataList.size();
+//            mUnitWeidth = width / mDataList.size();
+            mUnitWeidth = 30;
             mUnitHeight = -height / mMaxValue;
             canvas.translate(0, height);
             path.reset();

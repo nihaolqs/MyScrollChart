@@ -91,7 +91,7 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
             if (width > r - l) {
                 childAt.layout(l, t, r, b);
             }else {
-                childAt.layout(l,t,l + width,t + height);
+                childAt.layout(l,t,l + 100,t + 100);
             }
 
         }
@@ -106,8 +106,6 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
             int width1 = layoutParams.width;
 
             childAt.measure(widthMeasureSpec,heightMeasureSpec);
-
-
 
             int width = childAt.getMeasuredWidth();
             int height = childAt.getMeasuredHeight();
@@ -139,7 +137,7 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
     }
 
     @Override
-    public void doScroll(ViewGroup vg, int x, int y) {
+    public void doScroll(ViewGroup vg, float x, float y) {
         if (mScroll != null) {
             mScroll.doScroll(vg, x, y);
         }
@@ -200,10 +198,10 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
 
                 float x = event.getX();
                 float y = event.getY();
-                doScroll(this, (int) (mTouchX - x), (int) (mTouchY - y));
                 Log.e("doScroll", "" + (x - mTouchX));
-                mScrollX += (mTouchX - x);
-                mScrollY += (mTouchY - y);
+                mScrollX += (x - mTouchX);
+                mScrollY += (y - mTouchY);
+                doScroll(this, (int) (mScrollX), (int) (mScrollY));
 //ScrollView
                 mTouchX = x;
                 mTouchY = y;

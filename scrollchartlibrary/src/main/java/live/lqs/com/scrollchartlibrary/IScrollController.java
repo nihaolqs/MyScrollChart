@@ -7,5 +7,5 @@ import android.view.ViewGroup;
  */
 
 public interface IScrollController {
-        void doScroll(ViewGroup vg, int x, int y);
+        void doScroll(ViewGroup vg, float x, float y);
 }
