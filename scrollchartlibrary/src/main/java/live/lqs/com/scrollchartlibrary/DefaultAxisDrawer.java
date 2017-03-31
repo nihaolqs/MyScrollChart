@@ -20,6 +20,8 @@ public class DefaultAxisDrawer implements IAxisDrawer {
 
     private int mWidth;
 
+    private int mLineMargin = 0;
+
     @Override
     public void DrawXAxis(Canvas canvas, float scrollX) {
         initAxisDrawer(canvas);
@@ -31,12 +33,12 @@ public class DefaultAxisDrawer implements IAxisDrawer {
         canvas.translate(scrollX + paddingLeft, mHeight - paddingButtom);
         Paint xAxisPaint = mStyleData.getmXAxisPaint();
         float unitWeidth = mStyleData.getmUnitWeidth();
-        canvas.drawLine(0, 0, mStyleData.getmMaxXValue() * unitWeidth, 0, xAxisPaint);
+        canvas.drawLine(-mLineMargin-scrollX, mLineMargin, mStyleData.getmMaxXValue() * unitWeidth-mLineMargin -scrollX, mLineMargin, xAxisPaint);
         xAxisPaint.setTextAlign(Paint.Align.CENTER);
         for (DataEntry<String, Float> xAxisData : mXAxisDataList) {
             Float value = xAxisData.getValue();
             canvas.translate(value * unitWeidth, 0);
-            canvas.drawText(xAxisData.getKey(), 0, paddingButtom / 2, xAxisPaint);
+            canvas.drawText(xAxisData.getKey(), 0, (paddingButtom) / 2+mLineMargin, xAxisPaint);
             canvas.translate(-value * unitWeidth, 0);
         }
         canvas.restore();
@@ -55,13 +57,13 @@ public class DefaultAxisDrawer implements IAxisDrawer {
 
         canvas.clipRect(0, mStyleData.getmPaddingTop(), mWidth, mHeight - paddingButtom);  ////画布裁剪
         canvas.translate(paddingLeft, mHeight + scrollY - paddingButtom);
-        canvas.drawLine(0, 0, maxYValue * unitHeight, 0, yAxisPaint);
+        canvas.drawLine(-mLineMargin, mLineMargin-scrollY, -mLineMargin,mLineMargin-maxYValue * unitHeight - scrollY, yAxisPaint);
         yAxisPaint.setTextAlign(Paint.Align.RIGHT);
         for (DataEntry<String, Float> entry : mYAxisDataList) {
             Float value = entry.getValue();
-            canvas.translate(-value * unitHeight, 0);
-            canvas.drawText(entry.getKey(), 0, 0, yAxisPaint);
-            canvas.translate(value * unitHeight, 0);
+            canvas.translate(0,-value * unitHeight);
+            canvas.drawText(entry.getKey(), -mLineMargin, 0, yAxisPaint);
+            canvas.translate(0,value * unitHeight);
         }
         canvas.restore();
     }

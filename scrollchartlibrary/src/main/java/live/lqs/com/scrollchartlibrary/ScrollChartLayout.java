@@ -53,9 +53,11 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
     }
 
     private void init() {
+        setWillNotDraw(false);
         ChartLayoutBasicStyleData.Builder builder = new ChartLayoutBasicStyleData.Builder();
         Paint axisPaint = new Paint();
         axisPaint.setTextSize(mAxisTextSize);
+        axisPaint.setColor(mAxisColor);
         mStyleData = builder.setmMaxXValue(mMaxX)
                 .setmMaxYValue(mMaxY)
                 .setmPaddingButtom(getPaddingBottom())
@@ -90,8 +92,8 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
             int height = childAt.getMeasuredHeight();
             if (width > r - l) {
                 childAt.layout(l, t, r, b);
-            }else {
-                childAt.layout(l,t,l + 100,t + 100);
+            } else {
+                childAt.layout(l, t, l + 100, t + 100);
             }
 
         }
@@ -105,7 +107,7 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
             LayoutParams layoutParams = childAt.getLayoutParams();
             int width1 = layoutParams.width;
 
-            childAt.measure(widthMeasureSpec,heightMeasureSpec);
+            childAt.measure(widthMeasureSpec, heightMeasureSpec);
 
             int width = childAt.getMeasuredWidth();
             int height = childAt.getMeasuredHeight();
@@ -119,7 +121,6 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
     }
 
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -129,10 +130,14 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
         }
     }
 
-    public boolean canScroll() {
+    public boolean canScrollX() {
         if (mStyleData != null) {
             return mStyleData.getmUnitWeidth() * mStyleData.getmMaxXValue() > getWidth();
         }
+        return false;
+    }
+
+    public boolean canScrollY() {
         return false;
     }
 
@@ -198,11 +203,21 @@ public class ScrollChartLayout extends ViewGroup implements IScrollController, I
 
                 float x = event.getX();
                 float y = event.getY();
-                Log.e("doScroll", "" + (x - mTouchX));
-                mScrollX += (x - mTouchX);
+
+                if (canScrollX()) {
+                    mScrollX += (x - mTouchX);
+                    if (mScrollX > 0) {
+                        mScrollX = 0;
+                    }
+                    if (mScrollX <  - mStyleData.getmMaxXValue() * mStyleData.getmUnitWeidth() + getWidth() -mStyleData.getmPaddingLeft() -mStyleData.getmPaddingRight()) {
+                      mScrollX =  - mStyleData.getmMaxXValue() * mStyleData.getmUnitWeidth()  + getWidth()  -mStyleData.getmPaddingLeft() -mStyleData.getmPaddingRight();
+                    }
+                }
+
+                Log.e("doScroll", "" + mScrollX);
+
                 mScrollY += (y - mTouchY);
                 doScroll(this, (int) (mScrollX), (int) (mScrollY));
-//ScrollView
                 mTouchX = x;
                 mTouchY = y;
 

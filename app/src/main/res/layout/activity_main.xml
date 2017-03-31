@@ -25,14 +25,15 @@
     <!--</HorizontalScrollView>-->
 
     <live.lqs.com.scrollchartlibrary.ScrollChartLayout
+        android:id="@+id/scroll_chart_layout"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         app:AxisColor="#528e2a"
         app:AxisTextSize="12sp"
-        app:MaxX="20"
+        app:MaxX="10"
         app:MaxY="100"
         app:UnitHeight="5dp"
-        app:UnitWeidth="20dp"
+        app:UnitWeidth="50dp"
         android:clickable="true"
         android:padding="20dp"
 
